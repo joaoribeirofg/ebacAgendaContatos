@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>Agenda de contatos</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Agenda de contatos</h1>
+
+        <form id="form-agenda">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="text" id="telefone" placeholder="Telefone" required>
+            <button type="submit">Adicionar + </button>
+        </form>
+
+        <table cellspacing="10">
+            <thead>
+                <tr>
+                    <th>Nome do Contato</th>
+                    <th>Número Telefônico</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const form = document.getElementById('form-agenda');
+        let linhas = '';
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            adicionaLinha();
+        });
+
+        function adicionaLinha() {
+            const inputNomeContato = document.getElementById('nome');
+            const inputNumeroTelefone = document.getElementById('telefone');
+
+            let linha = `<tr>`;
+            linha += `<td>${inputNomeContato.value}</td>`;
+            linha += `<td>${inputNumeroTelefone.value}</td>`;
+            linha += `</tr>`;
+
+            linhas += linha;
+            atualizaAgenda();
+
+            inputNomeContato.value = '';
+            inputNumeroTelefone.value = '';
+        }
+
+        function atualizaAgenda() {
+            const corpoTabela = document.querySelector('tbody');
+            corpoTabela.innerHTML = linhas;
+        }
+    </script>
+</body>
+</html>
